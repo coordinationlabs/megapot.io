@@ -34,13 +34,12 @@ pnpm format:check # Check if files are formatted
 pnpm type-check   # Run TypeScript type checking
 ```
 
-## Pre-commit Hooks
+## Pre-push Hooks
 
-This project uses [Husky](https://typicode.github.io/husky/) to automatically run code quality checks before commits and pushes.
+This project uses [Husky](https://typicode.github.io/husky/) to automatically run code quality checks before pushes.
 
 ### What happens automatically:
 
-- **Before every commit**: Prettier format check and ESLint validation
 - **Before every push**: Prettier format check and ESLint validation
 
 ### For new developers:
