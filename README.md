@@ -17,6 +17,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 ## Scripts
 
 ### Development
+
 ```bash
 pnpm dev          # Start development server with Turbopack
 pnpm build        # Build for production
@@ -24,6 +25,7 @@ pnpm start        # Start production server
 ```
 
 ### Code Quality
+
 ```bash
 pnpm lint         # Check for code quality issues
 pnpm lint:fix     # Auto-fix linting issues

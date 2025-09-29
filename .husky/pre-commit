@@ -1,0 +1,9 @@
+# Run Prettier format check
+echo "🔍 Checking code formatting with Prettier..."
+pnpm format:check
+
+# Run ESLint
+echo "🔍 Running ESLint checks..."
+pnpm lint
+
+echo "✅ All pre-commit checks passed!"
