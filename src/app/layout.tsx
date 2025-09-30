@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
+import { Web3Provider } from "@/lib/web3/providers";
 
 export const metadata: Metadata = {
-  title: "App",
-  description: "",
+  title: "Megapot.io",
+  description: "Decentralized jackpot platform",
 };
 
 export default function RootLayout({
@@ -13,7 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Web3Provider>
+          {children}
+        </Web3Provider>
+      </body>
     </html>
   );
 }
