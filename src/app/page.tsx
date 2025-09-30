@@ -1,9 +1,7 @@
 import { megapotV2Contract } from "@/contracts/megapotV2";
 
 export default async function Home() {
-  
-        const drawingId = await megapotV2Contract.read.currentDrawingId();
-
+  const drawingId = await megapotV2Contract.read.currentDrawingId();
 
   return (
     <main className="min-h-svh flex items-center justify-center text-primary">
