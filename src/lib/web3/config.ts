@@ -1,5 +1,5 @@
-import { createConfig, http } from 'wagmi';
-import { base, baseSepolia } from 'viem/chains';
+import { createConfig, http } from "wagmi";
+import { base, baseSepolia } from "viem/chains";
 
 // RPC URLs - using Alchemy as main RPC provider
 export const baseRpcUrl = `https://base-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`;
