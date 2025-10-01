@@ -1,14 +1,9 @@
 import { createConfig, http } from "wagmi";
 import { base, baseSepolia } from "viem/chains";
 
-// RPC URLs - using Alchemy as main RPC provider
-const alchemyApiKey = process.env.ALCHEMY_API_KEY || "";
-export const baseRpcUrl = alchemyApiKey
-  ? `https://base-mainnet.g.alchemy.com/v2/${alchemyApiKey}`
-  : "https://mainnet.base.org";
-export const baseSepoliaRpcUrl = alchemyApiKey
-  ? `https://base-sepolia.g.alchemy.com/v2/${alchemyApiKey}`
-  : "https://sepolia.base.org";
+const alchemyApiKey = process.env.ALCHEMY_API_KEY!;
+export const baseRpcUrl = `https://base-mainnet.g.alchemy.com/v2/${alchemyApiKey}`;
+export const baseSepoliaRpcUrl = `https://base-sepolia.g.alchemy.com/v2/${alchemyApiKey}`;
 
 export const baseConfig = createConfig({
   chains: [base],
@@ -24,5 +19,4 @@ export const testnetConfig = createConfig({
   },
 });
 
-// Default config (change based on your primary network)
 export const defaultConfig = baseConfig;

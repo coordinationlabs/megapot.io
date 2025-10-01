@@ -28,5 +28,3 @@ export function getMegapotV2Contract(): Contract {
   }
   return contract;
 }
-
-
