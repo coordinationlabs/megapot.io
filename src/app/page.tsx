@@ -1,11 +1,12 @@
-import { megapotV2Contract } from "@/contracts/megapotV2";
+import { getMegapotV2Contract } from "@/contracts/megapotV2";
 
 export default async function Home() {
   let drawingId: bigint | null = null;
   let error: string | null = null;
 
   try {
-    drawingId = await megapotV2Contract.read.currentDrawingId();
+    const contract = getMegapotV2Contract();
+    drawingId = await contract.currentDrawingId();
   } catch {
     error = "Failed to load current drawing";
   }
