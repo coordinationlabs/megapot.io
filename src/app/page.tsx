@@ -1,5 +1,5 @@
 import { getMegapotV2Contract, DrawingState } from "@/contracts/megapotV2";
-import { formatUSDC } from "@/lib/utils/stringUtils";
+import { formatUSDC, formatDrawingTime } from "@/lib/utils/stringUtils";
 
 export default async function Home() {
   const contract = getMegapotV2Contract();
@@ -8,10 +8,13 @@ export default async function Home() {
 
   return (
     <main className="min-h-svh flex items-center justify-center text-primary">
-      <div className="text-center">
-        <h1 className="text-2xl font-semibold mb-4">Megapot V2</h1>
+      <div className="text-center flex flex-col gap-6">
+        <div className="text-2xl font-semibold">Megapot V2</div>
 
-        <p className="text-lg">Prize Pool: ${formatUSDC(state.prizePool)}</p>
+        <div className="text-lg">Jackpot: ${formatUSDC(state.prizePool)}</div>
+        <div className="text-lg">
+          Drawing time: {formatDrawingTime(state.drawingTime)}
+        </div>
       </div>
     </main>
   );
