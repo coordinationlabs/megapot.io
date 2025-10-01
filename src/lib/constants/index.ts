@@ -1,2 +1,3 @@
-// Export all constants
-export * from "./chains";
+// Chain constants
+export const CHAIN_MAINNET = "mainnet";
+export const CHAIN_TESTNET = "testnet";

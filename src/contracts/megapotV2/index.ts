@@ -1,7 +1,9 @@
+import { megapotV2Abi } from "@/contracts/megapotV2/abi";
 import { CHAIN_TESTNET } from "@/lib/constants";
 import { baseRpcUrl, baseSepoliaRpcUrl } from "@/lib/web3/config";
-import { megapotV2Abi } from "@/contracts/megapotV2/abi";
 import { Contract, JsonRpcProvider } from "ethers";
+
+export type { DrawingState } from "@/contracts/megapotV2/types";
 
 // Contract addresses
 const MEGAPOT_V2_MAINNET_ADDRESS: string =
