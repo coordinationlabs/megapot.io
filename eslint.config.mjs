@@ -13,6 +13,9 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
   {
+    languageOptions: {
+      ecmaVersion: 2022,
+    },
     plugins: {
       prettier: prettierPlugin,
     },
@@ -21,6 +24,18 @@ const eslintConfig = [
       "no-unused-vars": "off", // Handled by TypeScript
       "no-console": "warn",
       "prefer-const": "error",
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: ["../*", "./*"],
+              message:
+                "Use absolute imports instead of relative imports (e.g., '@/lib/...' instead of '../lib/...')",
+            },
+          ],
+        },
+      ],
     },
   },
   {
