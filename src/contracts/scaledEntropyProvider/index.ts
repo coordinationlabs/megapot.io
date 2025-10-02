@@ -3,14 +3,12 @@ import { defaultRpcUrl, isTestnet } from "@/lib/web3/config";
 import { Contract, JsonRpcProvider } from "ethers";
 
 // Contract addresses
-const SCALED_ENTROPY_PROVIDER_MAINNET_ADDRESS: string =
-  "0x0000000000000000000000000000000000000000";
-const SCALED_ENTROPY_PROVIDER_TESTNET_ADDRESS: string =
-  "0x79abA78e34F6B2ce138dBF88ef20C1571f47B1fC";
+const MAINNET_ADDRESS: string = "0x0000000000000000000000000000000000000000";
+const TESTNET_ADDRESS: string = "0x79abA78e34F6B2ce138dBF88ef20C1571f47B1fC";
 
 const scaledEntropyProviderAddress = isTestnet()
-  ? SCALED_ENTROPY_PROVIDER_TESTNET_ADDRESS
-  : SCALED_ENTROPY_PROVIDER_MAINNET_ADDRESS;
+  ? TESTNET_ADDRESS
+  : MAINNET_ADDRESS;
 const rpcUrl = defaultRpcUrl();
 
 let provider: JsonRpcProvider | undefined;

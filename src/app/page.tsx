@@ -1,6 +1,6 @@
 import { getMegapotV2Contract } from "@/contracts/megapotV2";
 import { DrawingState } from "@/contracts/megapotV2/types";
-import { formatUSDC, formatDrawingTime } from "@/lib/utils/stringUtils";
+import { formatDrawingTime, formatUSDC } from "@/lib/utils/stringUtils";
 
 export default async function Home() {
   const contract = getMegapotV2Contract();
