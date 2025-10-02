@@ -11,8 +11,8 @@ import { verifyCronAuthHeader } from "@/lib/utils/cronAuth";
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
-  // const unauthorized = verifyCronAuthHeader(request);
-  // if (unauthorized) return unauthorized;
+  const unauthorized = verifyCronAuthHeader(request);
+  if (unauthorized) return unauthorized;
 
   try {
     const rpcUrl = defaultRpcUrl();
@@ -41,7 +41,6 @@ export async function GET(request: Request) {
 
     const totalCost = state.ticketPrice * BigInt(tickets.length);
 
-    // Check current allowance
     const currentAllowance = await usdcContract.allowance(
       keeper.address,
       writeMegapot.target
@@ -49,7 +48,6 @@ export async function GET(request: Request) {
 
     // Approve USDC spending if needed
     if (currentAllowance < totalCost) {
-      console.log("Approving USDC spending...");
       const approveTx = await usdcContract.approve(
         writeMegapot.target,
         totalCost
@@ -62,7 +60,7 @@ export async function GET(request: Request) {
       keeper.address,
       [],
       [],
-      "0x0000000000000000000000000000000000000000000000000000000000000000" // source (zero bytes32)
+      "0x0000000000000000000000000000000000000000000000000000000000000000"
     );
 
     await tx.wait();
