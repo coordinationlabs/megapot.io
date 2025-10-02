@@ -2,8 +2,6 @@ import { megapotV2Abi } from "@/contracts/megapotV2/abi";
 import { defaultRpcUrl, isTestnet } from "@/lib/web3/config";
 import { Contract, JsonRpcProvider, Signer } from "ethers";
 
-export type { DrawingState } from "@/contracts/megapotV2/types";
-
 // Contract addresses
 const MEGAPOT_V2_MAINNET_ADDRESS: string =
   "0x0000000000000000000000000000000000000000";
