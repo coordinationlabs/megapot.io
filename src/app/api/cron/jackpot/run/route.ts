@@ -13,7 +13,6 @@ export const dynamic = "force-dynamic";
 const GAS_LIMIT = 5_000_000;
 
 export async function GET(request: Request) {
-
   // const unauthorized = verifyCronAuthHeader(request);
   // if (unauthorized) return unauthorized;
 
