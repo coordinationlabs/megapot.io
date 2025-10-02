@@ -6,12 +6,14 @@ import { DrawingState } from "@/contracts/megapotV2/types";
 import { getScaledEntropyProviderContract } from "@/contracts/scaledEntropyProvider";
 import { defaultRpcUrl } from "@/lib/web3/config";
 import { JsonRpcProvider, randomBytes, Wallet, zeroPadValue } from "ethers";
+import { verifyCronAuthHeader } from "@/lib/utils/cronAuth";
 
 export const dynamic = "force-dynamic";
 
 const GAS_LIMIT = 5_000_000;
 
 export async function GET(request: Request) {
+
   // const unauthorized = verifyCronAuthHeader(request);
   // if (unauthorized) return unauthorized;
 
@@ -31,6 +33,7 @@ export async function GET(request: Request) {
 
     const nowSec = BigInt(Math.floor(Date.now() / 1000));
 
+    // Ensure the drawing is due
     if (state.drawingTime > nowSec) {
       return new Response(
         JSON.stringify({
