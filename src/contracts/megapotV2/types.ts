@@ -10,3 +10,8 @@ export type DrawingState = {
   winningTicket: bigint;
   jackpotLock: boolean;
 };
+
+export type Ticket = {
+  normals: number[];
+  powerball: number;
+};
