@@ -14,6 +14,9 @@ export default async function Home() {
 
         <div className="text-lg">Jackpot: ${formatUSDC(state.prizePool)}</div>
         <div className="text-lg">
+          Tickets purchased: {state.globalTicketsBought.toString()}
+        </div>
+        <div className="text-lg">
           Drawing time: {formatDrawingTime(state.drawingTime)}
         </div>
       </div>
