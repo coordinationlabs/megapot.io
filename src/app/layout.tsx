@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
-import { Web3Provider } from "@/lib/web3/providers";
+import { PrivyWeb3Provider } from "@/lib/web3/privy-provider";
 
 export const metadata: Metadata = {
   title: "Megapot.io",
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Web3Provider>{children}</Web3Provider>
+        <PrivyWeb3Provider>{children}</PrivyWeb3Provider>
       </body>
     </html>
   );

@@ -1,12 +1,10 @@
-import {
-  getMegapotV2Contract,
-  getMegapotV2WriteContract,
-} from "@/contracts/megapotV2";
-import { DrawingState, Ticket } from "@/contracts/megapotV2/types";
+import { getMegapotV2WriteContract } from "@/contracts/megapotV2";
+import { Ticket } from "@/contracts/megapotV2/types";
 import { getUsdcWriteContract } from "@/contracts/usdc";
+import { jackpotService } from "@/lib/services/jackpot";
+import { verifyCronAuthHeader } from "@/lib/utils/cronAuth";
 import { defaultRpcUrl } from "@/lib/web3/config";
 import { JsonRpcProvider, Wallet } from "ethers";
-import { verifyCronAuthHeader } from "@/lib/utils/cronAuth";
 
 export const dynamic = "force-dynamic";
 
@@ -19,18 +17,14 @@ export async function GET(request: Request) {
     const provider = new JsonRpcProvider(rpcUrl);
     const keeper = new Wallet(process.env.MEGAPOT_KEEPER_PK!, provider);
 
-    const readMegapot = getMegapotV2Contract();
     const writeMegapot = getMegapotV2WriteContract(keeper);
     const usdcContract = getUsdcWriteContract(keeper);
 
-    const drawingId = await readMegapot.currentDrawingId();
-    const state: DrawingState = (await readMegapot.getDrawingState(
-      drawingId
-    )) as DrawingState;
+    const drawingState = await jackpotService.getCurrentDrawingState();
 
     // Use valid numbers within the ballMax and powerballMax ranges
-    const ballMax = Number(state.ballMax);
-    const powerballMax = Number(state.powerballMax);
+    const ballMax = Number(drawingState.ballMax);
+    const powerballMax = Number(drawingState.powerballMax);
 
     const tickets: Ticket[] = [
       {
@@ -39,7 +33,7 @@ export async function GET(request: Request) {
       },
     ];
 
-    const totalCost = state.ticketPrice * BigInt(tickets.length);
+    const totalCost = drawingState.ticketPrice * BigInt(tickets.length);
 
     const currentAllowance = await usdcContract.allowance(
       keeper.address,
