@@ -1,5 +1,6 @@
-import { getMegapotV2Contract, DrawingState } from "@/contracts/megapotV2";
-import { formatUSDC, formatDrawingTime } from "@/lib/utils/stringUtils";
+import { getMegapotV2Contract } from "@/contracts/megapotV2";
+import { DrawingState } from "@/contracts/megapotV2/types";
+import { formatDrawingTime, formatUSDC } from "@/lib/utils/stringUtils";
 
 export default async function Home() {
   const contract = getMegapotV2Contract();
@@ -12,6 +13,9 @@ export default async function Home() {
         <div className="text-2xl font-semibold">Megapot V2</div>
 
         <div className="text-lg">Jackpot: ${formatUSDC(state.prizePool)}</div>
+        <div className="text-lg">
+          Tickets purchased: {state.globalTicketsBought.toString()}
+        </div>
         <div className="text-lg">
           Drawing time: {formatDrawingTime(state.drawingTime)}
         </div>

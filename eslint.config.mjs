@@ -24,6 +24,7 @@ const eslintConfig = [
       "no-unused-vars": "off", // Handled by TypeScript
       "no-console": "warn",
       "prefer-const": "error",
+      "@typescript-eslint/no-explicit-any": "off",
       "no-restricted-imports": [
         "error",
         {

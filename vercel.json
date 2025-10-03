@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/jackpot/run",
+      "schedule": "10 * * * *"
+    },
+    {
+      "path": "/api/cron/jackpot/qa_buy",
+      "schedule": "15 * * * *"
+    }
+  ]
+}
