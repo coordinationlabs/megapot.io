@@ -15,19 +15,26 @@ export default function Account() {
   }
 
   if (!authenticated) {
-    return <button onClick={login}>Login</button>;
+    return (
+      <button
+        onClick={login}
+        className="px-4 py-2 bg-button-primary text-text-inverse rounded-lg hover:opacity-90 transition-opacity font-medium"
+      >
+        Login
+      </button>
+    );
   }
 
   // Show user info and logout button if authenticated
   return (
     <div className="flex items-center gap-4">
-      <div className="text-sm text-gray-600">
+      <div className="text-sm text-text-secondary">
         {wallets.length > 0 && (
           <div>
-            <div className="font-medium">
+            <div className="font-medium text-text-primary">
               {wallets[0].address.slice(0, 6)}...{wallets[0].address.slice(-4)}
             </div>
-            <div className="text-xs text-gray-500">
+            <div className="text-xs text-text-muted">
               {wallets[0].walletClientType}
             </div>
           </div>
@@ -35,7 +42,7 @@ export default function Account() {
       </div>
       <button
         onClick={logout}
-        className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium"
+        className="px-4 py-2 bg-button-primary text-text-inverse rounded-lg hover:opacity-90 transition-opacity font-medium"
       >
         Logout
       </button>

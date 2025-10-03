@@ -12,11 +12,12 @@ export function PrivyWeb3Provider({ children }: { children: React.ReactNode }) {
     <PrivyProvider
       appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID || ""}
       config={{
-        loginMethods: ["wallet"],
+        embeddedWallets: {
+          createOnLogin: "users-without-wallets",
+        },
         appearance: {
           theme: "light",
           accentColor: "#676FFF",
-          logo: "https://your-logo-url.com/logo.png",
         },
       }}
     >
