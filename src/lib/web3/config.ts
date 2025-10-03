@@ -27,4 +27,4 @@ export const testnetConfig = createConfig({
   },
 });
 
-export const defaultConfig = baseConfig;
+export const defaultConfig = isTestnet() ? testnetConfig : baseConfig;
