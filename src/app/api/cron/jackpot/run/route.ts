@@ -1,12 +1,9 @@
-import {
-  getMegapotV2Contract,
-  getMegapotV2WriteContract,
-} from "@/contracts/megapotV2";
-import { DrawingState } from "@/contracts/megapotV2/types";
+import { getMegapotV2WriteContract } from "@/contracts/megapotV2";
 import { getScaledEntropyProviderContract } from "@/contracts/scaledEntropyProvider";
+import { jackpotService } from "@/lib/services/jackpot";
+import { verifyCronAuthHeader } from "@/lib/utils/cronAuth";
 import { defaultRpcUrl } from "@/lib/web3/config";
 import { JsonRpcProvider, randomBytes, Wallet, zeroPadValue } from "ethers";
-import { verifyCronAuthHeader } from "@/lib/utils/cronAuth";
 
 export const dynamic = "force-dynamic";
 
@@ -21,19 +18,15 @@ export async function GET(request: Request) {
     const provider = new JsonRpcProvider(rpcUrl);
     const keeper = new Wallet(process.env.MEGAPOT_KEEPER_PK!, provider);
 
-    const readMegapot = getMegapotV2Contract();
     const writeMegapot = getMegapotV2WriteContract(keeper);
     const entropy = getScaledEntropyProviderContract();
 
-    const drawingId = await readMegapot.currentDrawingId();
-    const state: DrawingState = (await readMegapot.getDrawingState(
-      drawingId
-    )) as DrawingState;
+    const drawingState = await jackpotService.getCurrentDrawingState();
 
     const nowSec = BigInt(Math.floor(Date.now() / 1000));
 
     // Ensure the drawing is due
-    if (state.drawingTime > nowSec) {
+    if (drawingState.drawingTime > nowSec) {
       return new Response(
         JSON.stringify({
           ok: false,

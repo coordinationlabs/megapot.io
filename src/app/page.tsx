@@ -1,11 +1,8 @@
-import { getMegapotV2Contract } from "@/contracts/megapotV2";
-import { DrawingState } from "@/contracts/megapotV2/types";
+import { jackpotService } from "@/lib/services/jackpot";
 import { formatDrawingTime, formatUSDC } from "@/lib/utils/stringUtils";
 
 export default async function Home() {
-  const contract = getMegapotV2Contract();
-  const drawingId = await contract.currentDrawingId();
-  const state = (await contract.getDrawingState(drawingId)) as DrawingState;
+  const state = await jackpotService.getCurrentDrawingState();
 
   return (
     <main className="min-h-svh flex items-center justify-center text-primary">
